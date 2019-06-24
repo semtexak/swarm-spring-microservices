@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: gate
+  cloud:
+    gateway:
+      routes:
+        - id: user
+          uri: lb://user
+          predicates:
+            - Path=/api/user/**
+          filters:
+            - StripPrefix=1
+        - id: client
+          uri: lb://client
+          predicates:
+            - Path=/api/client/**
+          filters:
+            - StripPrefix=1
+
+server:
+  port: 1000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+eureka:
+  instance:
+    secure-virtual-host-name: ${spring.application.name}
+    preferIpAddress: false
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://eureka:8762/eureka}

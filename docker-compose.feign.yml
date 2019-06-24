@@ -1,0 +1,37 @@
+version: '3'
+services:
+  eureka:
+    build: eureka
+    image: eureka:latest
+    ports:
+      - "8762:8762"
+    networks:
+      feign-overlay:
+        aliases:
+          - eureka
+  gate:
+    build: gate
+    image: gate:latest
+    ports:
+      - "1000:1000"
+    networks:
+      - feign-overlay
+  user:
+    build: user
+    image: user:latest
+    ports:
+      - "1001:1001"
+    networks:
+      - feign-overlay
+  client:
+    build: client
+    image: client:latest
+    ports:
+      - "1002:1002"
+    networks:
+      - feign-overlay
+
+networks:
+  feign-overlay:
+    external:
+      name: feign-overlay

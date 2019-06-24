@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: client
+
+server:
+  port: 1002
+
+eureka:
+  instance:
+    secure-virtual-host-name: ${spring.application.name}
+    preferIpAddress: false
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://eureka:8762/eureka}

@@ -11,7 +11,7 @@ spring:
         filters:
         - StripPrefix=1
       - id: client
-        uri: lb://client
+        uri: http://client
         predicates:
         - Path=/api/client/**
         filters:

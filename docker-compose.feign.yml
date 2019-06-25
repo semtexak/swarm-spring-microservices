@@ -23,6 +23,9 @@ services:
       - "1001:1001"
     networks:
       - feign-overlay
+    deploy:
+      mode: replicated
+      replicas: 2
   client:
     build: client
     image: client:latest
@@ -30,6 +33,9 @@ services:
       - "1002:1002"
     networks:
       - feign-overlay
+    deploy:
+      mode: replicated
+      replicas: 3
 
 networks:
   feign-overlay:

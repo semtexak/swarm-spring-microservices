@@ -1,8 +1,18 @@
 spring:
   application:
     name: user
+  cloud:
+    inetutils:
+      ignored-interfaces:
+        - eth0
+        - eth1
+        - eth2
+        - eth3
+        - lo
+        -
 server:
   port: 1001
+
 eureka:
   instance:
     secure-virtual-host-name: ${spring.application.name}

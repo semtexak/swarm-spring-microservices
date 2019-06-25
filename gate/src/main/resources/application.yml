@@ -2,6 +2,13 @@ spring:
   application:
     name: gate
   cloud:
+    inetutils:
+      ignored-interfaces:
+        - eth0
+        - eth1
+        - eth2
+        - eth3
+        - lo
     gateway:
       routes:
       - id: user

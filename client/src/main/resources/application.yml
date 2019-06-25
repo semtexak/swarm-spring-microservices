@@ -1,6 +1,14 @@
 spring:
   application:
     name: client
+  cloud:
+    inetutils:
+      ignored-interfaces:
+        - eth0
+        - eth1
+        - eth2
+        - eth3
+        - lo
 
 server:
   port: 1002

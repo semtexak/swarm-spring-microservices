@@ -4,18 +4,21 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: user
-          uri: lb://user
-          predicates:
-            - Path=/api/user/**
-          filters:
-            - StripPrefix=1
-        - id: client
-          uri: lb://client
-          predicates:
-            - Path=/api/client/**
-          filters:
-            - StripPrefix=1
+      - id: user
+        uri: lb://user
+        predicates:
+        - Path=/api/user/**
+        filters:
+        - StripPrefix=1
+      - id: client
+        uri: lb://client
+        predicates:
+        - Path=/api/client/**
+        filters:
+        - StripPrefix=1
+      discovery:
+        locator:
+          enabled: true
 
 server:
   port: 1000
